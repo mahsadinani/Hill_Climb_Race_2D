@@ -22,12 +22,17 @@ public class FuelController : MonoBehaviour
         UpdateUI();
 
     }
-    private void Update()
+    private void Update() // runs per frame
     {
         _currentFuelAmount -= Time.deltaTime * _fuelDrainSpeed;
         // you may wanna cheat :) 
         // but even if your car doesnt move , it still drains fuel 
         UpdateUI();
+
+        if (_currentFuelAmount<=0f)
+        {
+            GameManager.instance.GameOver();
+        }
     }
     private void UpdateUI() // we define this method 
     {
